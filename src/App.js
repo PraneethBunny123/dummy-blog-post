@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages/Home';
 import PostPage, { loader, loader as postLoader } from './pages/Post';
 import RootLayout from './pages/Root';
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 
 const BlogPage = lazy(() => import('./pages/Blog'));
 
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         path: 'posts',
         children: [
           { index: true, 
-            element: <BlogPage />, 
+            element: <Suspense fallback={<p>Loading...</p>}><BlogPage /></Suspense>, 
             loader: () => 
               import('./pages/Blog').then((module) => module.loader())
           },
