@@ -4,6 +4,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages/Home';
 import PostPage, { loader, loader as postLoader } from './pages/Post';
 import RootLayout from './pages/Root';
+import { lazy } from 'react';
+
+const BlogPage = lazy(() => import('./pages/Blog'));
 
 const router = createBrowserRouter([
   {
